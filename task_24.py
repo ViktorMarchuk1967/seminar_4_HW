@@ -10,3 +10,24 @@
 находясь перед некоторым кустом заданной во входном файле грядки.
 """
 
+n = int(input("Введите количество кустов: "))
+dataset = []
+for i in range(n):
+    dataset.append(int(input(f"Введите количество ягод на {i+1} кусте: ")))
+print(dataset)
+max_count = 0
+max_i = 0
+for i in range(n):
+    if i == 0:
+        if max_count < dataset[i] + dataset[i + 1] + dataset[n - 1]:
+            max_count = dataset[i] + dataset[i + 1] + dataset[n - 1]
+            max_i = i
+    elif i == n-1:
+        if max_count < dataset[i] + dataset[i - 1] + dataset[0]:
+            max_count = dataset[i] + dataset[i - 1] + dataset[0]
+            max_i = i
+    else:
+        if max_count < dataset[i] + dataset[i + 1] + dataset[i - 1]:
+            max_count = dataset[i] + dataset[i + 1] + dataset[i - 1]
+            max_i = i
+print(f"Максимальное количество ягод {max_count} будет собрано при заходе на {max_i + 1} куст")
